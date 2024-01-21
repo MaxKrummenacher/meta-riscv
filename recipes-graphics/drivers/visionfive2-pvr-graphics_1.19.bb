@@ -17,6 +17,7 @@ SRC_URI += "\
 
 PACKAGES += " \
     ${PN}-firmware \
+    ${PN}-service \
     ${PN}-tools \
 "
 
@@ -61,8 +62,10 @@ do_install:append:libc-musl() {
     done
 }
 
-INITSCRIPT_NAME = "rc.pvr"
-SYSTEMD_SERVICE:${PN} = "rc.pvr.service"
+INITSCRIPT_PACKAGES = "${PN}-service"
+INITSCRIPT_NAME:${PN}-service  = "rc.pvr"
+SYSTEMD_PACKAGES = "${PN}-service"
+SYSTEMD_SERVICE:${PN}-service = "rc.pvr.service"
 
 FILES_SOLIBSDEV = ""
 FILES:${PN} += " \
