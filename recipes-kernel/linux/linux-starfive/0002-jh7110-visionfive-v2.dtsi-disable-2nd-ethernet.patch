@@ -1,0 +1,66 @@
+From 347e971e1bcf07a33b1c1db601f69102cdc28086 Mon Sep 17 00:00:00 2001
+From: Max Krummenacher <max.krummenacher@toradex.com>
+Date: Sat, 2 Mar 2024 17:05:36 +0100
+Subject: [PATCH 2/3] jh7110-visionfive-v2.dtsi: disable 2nd ethernet
+
+Upstream-Status: Pending
+Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
+---
+ .../boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dts  | 4 ++++
+ .../riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi | 2 ++
+ 2 files changed, 6 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dts
+index d4ea4a2c0b9b..9f216e22d77e 100644
+--- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dts
++++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dts
+@@ -18,11 +18,13 @@ &gmac0 {
+ 	assigned-clock-parents = <&aoncrg JH7110_AONCLK_GMAC0_RMII_RTX>;
+ };
+ 
++#if 0
+ &gmac1 {
+ 	starfive,tx-use-rgmii-clk;
+ 	assigned-clocks = <&syscrg JH7110_SYSCLK_GMAC1_TX>;
+ 	assigned-clock-parents = <&syscrg JH7110_SYSCLK_GMAC1_RMII_RTX>;
+ };
++#endif
+ 
+ &phy0 {
+ 	motorcomm,tx-clk-adj-enabled;
+@@ -34,6 +36,7 @@ &phy0 {
+ 	tx-internal-delay-ps = <1500>;
+ };
+ 
++#if 0
+ &phy1 {
+ 	motorcomm,tx-clk-adj-enabled;
+ 	motorcomm,tx-clk-100-inverted;
+@@ -42,3 +45,4 @@ &phy1 {
+ 	rx-internal-delay-ps = <300>;
+ 	tx-internal-delay-ps = <0>;
+ };
++#endif
+diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+index a201dd8994cb..ed5771bae8a2 100644
+--- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
++++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+@@ -100,6 +100,7 @@ wm8960_mclk: wm8960_mclk {
+ 	};
+ };
+ 
++#if 0
+ &gmac1 {
+ 	phy-handle = <&phy1>;
+ 	phy-mode = "rgmii-id";
+@@ -115,6 +116,7 @@ phy1: ethernet-phy@1 {
+ 		};
+ 	};
+ };
++#endif
+ 
+ &i2c2 {
+ #if 0
+-- 
+2.51.0
+

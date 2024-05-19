@@ -46,6 +46,9 @@ SRC_URI:jh7110 = " \
            file://0001-kbuild-Do-not-use-NOTIMMEDIATE.patch \
            file://0001-gcc-plugins-Always-define-CONST_CAST_GIMPLE-and-CONS.patch \
            file://0001-drm-img-rogue-fix-build-with-gcc-16.patch \
+           file://0001-jh7110-visionfive-v2.dtsi-disable-panels-and-touchsc.patch \
+           file://0002-jh7110-visionfive-v2.dtsi-disable-2nd-ethernet.patch \
+           file://0003-jh7110-visionfive-v2.dtsi-disable-not-used-video-out.patch \
            file://visionfive2-graphics.cfg \
            file://modules.cfg \
 "
