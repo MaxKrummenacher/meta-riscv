@@ -52,6 +52,7 @@ do_install () {
 
     # cleanup unused
     rm -rf ${D}/${IMG_GPU_POWERVR_VERSION}
+    rm -f ${D}/usr/lib/libOpenCL.so*
 }
 
 do_install:append:libc-musl() {
