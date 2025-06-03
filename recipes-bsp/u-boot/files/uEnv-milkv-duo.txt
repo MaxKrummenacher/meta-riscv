@@ -13,4 +13,6 @@ fdtaddr=0x83000000
 loadfdt=fatload mmc 0 ${fdtaddr} ${fdt}
 loaduimage=fatload mmc 0 ${loadaddr} ${kernel}
 
+ethaddr=0e:7a:d6:d3:20:07
+
 uenvcmd=echo Booting from SD ...; run loaduimage && run loadfdt && run setbootargs && bootm ${loadaddr} - ${fdtaddr}

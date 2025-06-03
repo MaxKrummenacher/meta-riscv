@@ -8,8 +8,11 @@ DEPENDS = "u-boot-mkimage-native dtc-native"
 BRANCH ?= "main"
 FORK ?= "xyq1113723547"
 
-SRC_URI = "git://github.com/${FORK}/cvitek-linux-5.10.git;protocol=https;branch=${BRANCH} \
-           "
+SRC_URI = " \
+    git://github.com/${FORK}/cvitek-linux-5.10.git;protocol=https;branch=${BRANCH} \
+    file://0001-arch-riscv-mm-context.c-fix-deprecated-csr-name-use.patch \
+    file://0001-milkvduo-reduce-large-memreserve-for-ion-isp.patch \
+"
 
 SRCREV ?= "15ea08f842174c4eff8dcc0943de6e70b0b7aa2f"
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
