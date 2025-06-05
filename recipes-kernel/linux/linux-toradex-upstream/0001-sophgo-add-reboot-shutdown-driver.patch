@@ -1,26 +1,26 @@
-From f777bde17737f80f126c8fe859bfd1eeba0d8f7b Mon Sep 17 00:00:00 2001
+From cc795054ab02827f46f117a10f516b8b2a110642 Mon Sep 17 00:00:00 2001
 From: GP Orcullo <kinsamanka@gmail.com>
 Date: Sat, 4 Nov 2023 13:09:27 +0000
-Subject: [PATCH 1/5] sophgo: add reboot/shutdown driver
+Subject: [PATCH 1/3] sophgo: add reboot/shutdown driver
 
 extracted from OEM supplied sources
 
 Upstream-Status: Pending
 ---
- arch/riscv/boot/dts/sophgo/cv18xx.dtsi |   5 ++
+ arch/riscv/boot/dts/sophgo/cv180x.dtsi |   6 ++
  drivers/power/reset/Kconfig            |   6 ++
  drivers/power/reset/Makefile           |   1 +
  drivers/power/reset/sophgo-reboot.c    | 108 +++++++++++++++++++++++++
- 4 files changed, 120 insertions(+)
+ 4 files changed, 121 insertions(+)
  create mode 100644 drivers/power/reset/sophgo-reboot.c
 
-diff --git a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-index c18822ec849f..1edbc305741f 100644
---- a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-@@ -358,5 +358,10 @@ clint: timer@74000000 {
- 			reg = <0x74000000 0x10000>;
- 			interrupts-extended = <&cpu0_intc 3>, <&cpu0_intc 7>;
+diff --git a/arch/riscv/boot/dts/sophgo/cv180x.dtsi b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+index ed06c3609fb2..e9c8e72229e5 100644
+--- a/arch/riscv/boot/dts/sophgo/cv180x.dtsi
++++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+@@ -307,5 +307,11 @@ dmac: dma-controller@4330000 {
+ 			snps,data-width = <2>;
+ 			status = "disabled";
  		};
 +
 +		restart: restart-controller@5025000 {
@@ -28,9 +28,10 @@ index c18822ec849f..1edbc305741f 100644
 +			reg = <0x05025000 0x2000>;
 +		};
  	};
++
  };
 diff --git a/drivers/power/reset/Kconfig b/drivers/power/reset/Kconfig
-index 60bf0ca64cf3..e77755a76ac2 100644
+index e71f0af4e378..f1f03ea41aab 100644
 --- a/drivers/power/reset/Kconfig
 +++ b/drivers/power/reset/Kconfig
 @@ -210,6 +210,12 @@ config POWER_RESET_RESTART
@@ -47,10 +48,10 @@ index 60bf0ca64cf3..e77755a76ac2 100644
  	bool "ST restart driver"
  	depends on ARCH_STI
 diff --git a/drivers/power/reset/Makefile b/drivers/power/reset/Makefile
-index 10782d32e1da..c4da75306811 100644
+index 1b9b63a1a873..a36f3deaea1f 100644
 --- a/drivers/power/reset/Makefile
 +++ b/drivers/power/reset/Makefile
-@@ -37,3 +37,4 @@ obj-$(CONFIG_SYSCON_REBOOT_MODE) += syscon-reboot-mode.o
+@@ -38,3 +38,4 @@ obj-$(CONFIG_SYSCON_REBOOT_MODE) += syscon-reboot-mode.o
  obj-$(CONFIG_POWER_RESET_SC27XX) += sc27xx-poweroff.o
  obj-$(CONFIG_NVMEM_REBOOT_MODE) += nvmem-reboot-mode.o
  obj-$(CONFIG_POWER_MLXBF) += pwr-mlxbf.o
@@ -170,5 +171,5 @@ index 000000000000..17b828a15272
 +};
 +module_platform_driver(sophgo_reboot_driver);
 -- 
-2.47.1
+2.49.0
 

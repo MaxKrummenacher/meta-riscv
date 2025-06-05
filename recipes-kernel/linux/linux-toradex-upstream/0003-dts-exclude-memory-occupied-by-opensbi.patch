@@ -1,7 +1,7 @@
-From 86c7be6ccc41877bcd3f631863f5349d54beac5d Mon Sep 17 00:00:00 2001
+From 2c83fcfbcbce0b4993f658e99054aa71a5aab64f Mon Sep 17 00:00:00 2001
 From: GP Orcullo <kinsamanka@gmail.com>
 Date: Thu, 4 Apr 2024 15:39:01 +0000
-Subject: [PATCH 3/5] dts: exclude memory occupied by opensbi
+Subject: [PATCH 3/3] dts: exclude memory occupied by opensbi
 
 Signed-off-by: GP Orcullo <kinsamanka@gmail.com>
 
@@ -28,5 +28,5 @@ index a53ceb0ddb8e..868de00865d8 100644
  };
  
 -- 
-2.47.1
+2.49.0
 
