@@ -1,26 +1,25 @@
-From 2c83fcfbcbce0b4993f658e99054aa71a5aab64f Mon Sep 17 00:00:00 2001
+From b82c7ccb5dce199d436c41a93d80a2e697cd65b7 Mon Sep 17 00:00:00 2001
 From: GP Orcullo <kinsamanka@gmail.com>
 Date: Thu, 4 Apr 2024 15:39:01 +0000
-Subject: [PATCH 3/3] dts: exclude memory occupied by opensbi
+Subject: [PATCH] dts: exclude memory occupied by opensbi
 
 Signed-off-by: GP Orcullo <kinsamanka@gmail.com>
 
 Upstream-Status: Pending
 ---
- arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
-index a53ceb0ddb8e..868de00865d8 100644
+index 885e462..b33c9b0 100644
 --- a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
 +++ b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
-@@ -32,6 +32,12 @@ coprocessor_rtos: region@83f40000 {
+@@ -32,6 +32,11 @@
  			reg = <0x83f40000 0xc0000>;
  			no-map;
  		};
 +
 +		opensbi {
-+			compatible = "removed-dma-pool";
 +			reg = <0x80000000 0x60000>;
 +			no-map;
 +		};
@@ -28,5 +27,5 @@ index a53ceb0ddb8e..868de00865d8 100644
  };
  
 -- 
-2.49.0
+2.5.0
 

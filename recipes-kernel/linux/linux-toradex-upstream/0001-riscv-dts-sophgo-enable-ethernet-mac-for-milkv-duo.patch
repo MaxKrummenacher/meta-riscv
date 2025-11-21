@@ -1,0 +1,33 @@
+From b7a78ea4bfd4ec257c7c2b5052d8d993e09d0aa4 Mon Sep 17 00:00:00 2001
+From: Max Krummenacher <max.krummenacher@toradex.com>
+Date: Sun, 17 Aug 2025 21:46:58 +0200
+Subject: [PATCH 1/4] riscv: dts: sophgo: enable ethernet mac for milkv duo
+
+Upstream-Status: Pending
+Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
+---
+ arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
+index 9feb520eaec4..885e4626483c 100644
+--- a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
++++ b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
+@@ -35,6 +35,14 @@ coprocessor_rtos: region@83f40000 {
+ 	};
+ };
+ 
++&gmac0 {
++	status = "okay";
++};
++
++&mdio {
++	status = "okay";
++};
++
+ &osc {
+ 	clock-frequency = <25000000>;
+ };
+-- 
+2.43.0
+

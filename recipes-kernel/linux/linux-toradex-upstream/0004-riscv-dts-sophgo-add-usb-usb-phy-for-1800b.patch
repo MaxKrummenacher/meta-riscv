@@ -1,0 +1,47 @@
+From 8385a6b7fa8752e3263c72c0cc24193b797ee02d Mon Sep 17 00:00:00 2001
+From: Max Krummenacher <max.krummenacher@toradex.com>
+Date: Sun, 17 Aug 2025 22:52:03 +0200
+Subject: [PATCH 4/4] riscv: dts: sophgo: add usb / usb phy for 1800b
+
+Upstream-Status: Pending
+Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
+---
+ arch/riscv/boot/dts/sophgo/cv180x.dtsi | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/sophgo/cv180x.dtsi b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+index ccdb45498653..d1d602f2fd50 100644
+--- a/arch/riscv/boot/dts/sophgo/cv180x.dtsi
++++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
+@@ -406,6 +406,28 @@ dmac: dma-controller@4330000 {
+ 			status = "disabled";
+ 		};
+ 
++		phy@48 {
++			compatible = "sophgo,cv1800b-usb2-phy";
++			reg = <0x48 0x4>;
++			#phy-cells = <0>;
++			clocks = <&clk 93>, <&clk 94>, <&clk 95>;
++			clock-names = "app", "stb", "lpm";
++			resets = <&rst 58>;
++		};
++
++		usb: usb@4340000 {
++			compatible = "sophgo,cv1800b-usb";
++			reg = <0x4340000 0x10000>;
++			g-use-dma;
++			g-rx-fifo-size = <536>;
++			g-np-tx-fifo-size = <32>;
++			g-tx-fifo-size = <768 512 512 384 128 128>;
++			clocks = <&clk CLK_AXI4_USB>;
++			clock-names = "otg";
++			interrupts = <30 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-parent = <&plic>;
++		};
++
+ 		rtc@5025000 {
+ 			compatible = "sophgo,cv1800b-rtc", "syscon";
+ 			reg = <0x5025000 0x2000>;
+-- 
+2.43.0
+
