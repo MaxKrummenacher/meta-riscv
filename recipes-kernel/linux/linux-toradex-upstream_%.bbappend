@@ -6,6 +6,7 @@ TDX_PATCHES:append:milkv-duo = " \
 	file://0001-riscv-dts-sophgo-enable-ethernet-mac-for-milkv-duo.patch \
 	file://0003-dts-exclude-memory-occupied-by-opensbi.patch \
 	file://0004-riscv-dts-sophgo-add-usb-usb-phy-for-1800b.patch \
+	file://0001-riscv-dts-sophgo-cv1800b-milkv-duo-add-led-trigger.patch \
 	file://milkv-duo_defconfig \
 	file://multi.its \
 "

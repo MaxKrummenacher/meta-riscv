@@ -1,0 +1,42 @@
+From 6d0a8288f0b7b068aceea4ac747cdc85bc490975 Mon Sep 17 00:00:00 2001
+From: Max Krummenacher <max.krummenacher@toradex.com>
+Date: Sat, 22 Nov 2025 14:44:36 +0100
+Subject: [PATCH] riscv: dts: sophgo: cv1800b-milkv-duo: add led trigger
+
+Upstream-Status: Pending
+Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
+---
+ arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
+index b33c9b022bf7..8a01cbb4b8c3 100644
+--- a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
++++ b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
+@@ -5,6 +5,7 @@
+ 
+ /dts-v1/;
+ 
++#include <dt-bindings/leds/common.h>
+ #include "cv1800b.dtsi"
+ 
+ / {
+@@ -23,6 +24,15 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
++	leds {
++		compatible = "gpio-leds";
++		led-0 {
++			gpios = <&portc 24 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "mmc0";
++			function = LED_FUNCTION_HEARTBEAT;
++		};
++	};
++
+ 	reserved-memory {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-- 
+2.51.0
+
