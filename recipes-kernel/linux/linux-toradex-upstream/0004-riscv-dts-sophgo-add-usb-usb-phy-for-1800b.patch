@@ -1,4 +1,4 @@
-From 8385a6b7fa8752e3263c72c0cc24193b797ee02d Mon Sep 17 00:00:00 2001
+From 32aee9ffd5cc22a45ed520afb4589a4dc6ef4f58 Mon Sep 17 00:00:00 2001
 From: Max Krummenacher <max.krummenacher@toradex.com>
 Date: Sun, 17 Aug 2025 22:52:03 +0200
 Subject: [PATCH 4/4] riscv: dts: sophgo: add usb / usb phy for 1800b
@@ -6,42 +6,21 @@ Subject: [PATCH 4/4] riscv: dts: sophgo: add usb / usb phy for 1800b
 Upstream-Status: Pending
 Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
 ---
- arch/riscv/boot/dts/sophgo/cv180x.dtsi | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/riscv/boot/dts/sophgo/cv180x.dtsi b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-index ccdb45498653..d1d602f2fd50 100644
---- a/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-@@ -406,6 +406,28 @@ dmac: dma-controller@4330000 {
- 			status = "disabled";
- 		};
+diff --git a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
+index 6fcd1d1f451f..1b1c20196c7f 100644
+--- a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
++++ b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
+@@ -110,6 +110,6 @@ &uart0 {
+ };
  
-+		phy@48 {
-+			compatible = "sophgo,cv1800b-usb2-phy";
-+			reg = <0x48 0x4>;
-+			#phy-cells = <0>;
-+			clocks = <&clk 93>, <&clk 94>, <&clk 95>;
-+			clock-names = "app", "stb", "lpm";
-+			resets = <&rst 58>;
-+		};
-+
-+		usb: usb@4340000 {
-+			compatible = "sophgo,cv1800b-usb";
-+			reg = <0x4340000 0x10000>;
-+			g-use-dma;
-+			g-rx-fifo-size = <536>;
-+			g-np-tx-fifo-size = <32>;
-+			g-tx-fifo-size = <768 512 512 384 128 128>;
-+			clocks = <&clk CLK_AXI4_USB>;
-+			clock-names = "otg";
-+			interrupts = <30 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-parent = <&plic>;
-+		};
-+
- 		rtc@5025000 {
- 			compatible = "sophgo,cv1800b-rtc", "syscon";
- 			reg = <0x5025000 0x2000>;
+ &usb {
+-	dr_mode = "host";
++	dr_mode = "peripheral";
+ 	status = "okay";
+ };
 -- 
-2.43.0
+2.51.0
 
