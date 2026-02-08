@@ -10,7 +10,10 @@ TDX_PATCHES:append:milkv-duo = " \
 	file://milkv-duo_defconfig \
 	file://multi.its \
 "
-
+# work around parser error: 
+# fatal: unable to access 'https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/': error adding trust anchors from file: /etc/ssl/certs/ca-certificates.crt
+# with use-head-next
+SRCREV:milkv-duo = "9448598b22c50c8a5bb77a9103e2d49f134c9578"
 KERNEL_DEVICETREE:milkv-duo ?= "sophgo/cv1800b-milkv-duo.dtb"
 
 A_DEPEND = ""
