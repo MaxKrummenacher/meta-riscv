@@ -31,14 +31,22 @@ SRC_URI:k1 = " \
             file://bootcommand.cfg \
             "
 
-SRC_URI:milkv-duo = " \
+SRC_URI:milkv-duo:vendor-uboot = " \
             git://github.com/milkv-duo/milkv-duo-u-boot;protocol=https;branch=duo-64mb \
             file://uboot-milkv-duo.env \
             file://uEnv-milkv-duo.txt \
             file://milkv-duo-support-files.patch \
             "
-SRCREV:milkv-duo = "4345a29c08e67044021f74139b4ff307019e9932"
-LIC_FILES_CHKSUM:milkv-duo = "file://Licenses/README;md5=5a7450c57ffe5ae63fd732446b988025"
+SRC_URI:remove:milkv-duo:vendor-uboot = "file://0001-scripts-dtc-drop-yaml-in-DT-validation.patch"
+SRCREV:milkv-duo:vendor-uboot = "4345a29c08e67044021f74139b4ff307019e9932"
+LIC_FILES_CHKSUM:milkv-duo:vendor-uboot = "file://Licenses/README;md5=5a7450c57ffe5ae63fd732446b988025"
+
+SRC_URI:append:milkv-duo:upstream-uboot = " \
+            file://0001-riscv-sophgo-add-boot0-header.patch \
+            file://0001-milkv_duo-mainline-use-fat-for-env-and-use-the-defau.patch \
+            file://uboot-milkv-duo.env \
+            file://uEnv-milkv-duo.txt \
+"
 
 ###############################
 # configure task customizations
@@ -65,6 +73,7 @@ do_configure:prepend:freedom-u540() {
 do_configure:prepend:milkv-duo() {
     if [ -f "${UNPACKDIR}/uboot-milkv-duo.env" ]; then
         cp ${UNPACKDIR}/uboot-milkv-duo.env ${S}/include/milkv-duo.env
+        cp ${UNPACKDIR}/uboot-milkv-duo.env ${S}/board/sophgo/milkv_duo/milkv-duo.env
     fi
 }
 

@@ -1,0 +1,67 @@
+From f240f6701cb20f3abea7e813a2a0f52d8f8f90d9 Mon Sep 17 00:00:00 2001
+From: Kongyang Liu <seashell11234455@gmail.com>
+Date: Tue, 26 Dec 2023 01:08:01 +0000
+Subject: [PATCH] riscv: sophgo: add boot0 header
+
+Signed-off-by: Kongyang Liu <seashell11234455@gmail.com>
+(cherry picked from commit 3e389f61f936e98d84733889ed76c937bf334dbc)
+Upstream-Status: Pending
+---
+ arch/riscv/cpu/start.S         |  2 ++
+ arch/riscv/include/asm/boot0.h | 31 +++++++++++++++++++++++++++++++
+ 2 files changed, 33 insertions(+)
+ create mode 100644 arch/riscv/include/asm/boot0.h
+
+diff --git a/arch/riscv/cpu/start.S b/arch/riscv/cpu/start.S
+index 7bafdfd390a4..46149a495eca 100644
+--- a/arch/riscv/cpu/start.S
++++ b/arch/riscv/cpu/start.S
+@@ -39,6 +39,8 @@ secondary_harts_relocation_error:
+ .section .text
+ .globl _start
+ _start:
++#include <asm/boot0.h>
++_start_real:
+ #if CONFIG_IS_ENABLED(RISCV_MMODE)
+ 	csrr	a0, CSR_MHARTID
+ #endif
+diff --git a/arch/riscv/include/asm/boot0.h b/arch/riscv/include/asm/boot0.h
+new file mode 100644
+index 000000000000..a49dfacf78d3
+--- /dev/null
++++ b/arch/riscv/include/asm/boot0.h
+@@ -0,0 +1,31 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * CVITEK u-boot header
++ */
++
++#ifndef __BOOT0_H__
++#define __BOOT0_H__
++
++/* BOOT0 header information */
++	j boot0_time_recode
++	.balign 4
++	.word 0x33334c42  /* b'BL33' */
++	.word 0xdeadbeea  /* CKSUM */
++	.word 0xdeadbeeb  /* SIZE */
++	.quad CONFIG_TEXT_BASE /* RUNADDR */
++	.word 0xdeadbeec
++	.balign 4
++	j boot0_time_recode
++	.balign 4
++/* BOOT0 header end */
++boot0_time_recode:
++	csrr x1, time
++	la x2, BOOT0_START_TIME
++	sw x1, 0(x2)
++	j _start_real
++
++	.global BOOT0_START_TIME
++BOOT0_START_TIME:
++	.word 0
++
++#endif /* __BOOT0_H__ */
+-- 
+2.51.0
+
