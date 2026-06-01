@@ -1,6 +1,7 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/linux-toradex-upstream:"
 
-DEPENDS:append:milkv-duo = "u-boot-mkimage-native dtc-native"
+DEPENDS:append:milkv-duo = " ca-certificates-native u-boot-mkimage-native dtc-native "
+DEPENDS:append = " ca-certificates-native"
 
 TDX_PATCHES:append:milkv-duo = " \
 	file://0001-riscv-dts-sophgo-enable-ethernet-mac-for-milkv-duo.patch \
@@ -13,7 +14,7 @@ TDX_PATCHES:append:milkv-duo = " \
 # work around parser error: 
 # fatal: unable to access 'https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/': error adding trust anchors from file: /etc/ssl/certs/ca-certificates.crt
 # with use-head-next
-SRCREV:milkv-duo = "9448598b22c50c8a5bb77a9103e2d49f134c9578"
+SRCREV:milkv-duo = "5ee8dbf54602dc340d6235b1d6aa17c0f283f48c"
 KERNEL_DEVICETREE:milkv-duo ?= "sophgo/cv1800b-milkv-duo.dtb"
 
 A_DEPEND = ""
@@ -28,5 +29,3 @@ do_deploy:append:milkv-duo() {
 	install -m 744 ${B}/uImage.fit ${DEPLOYDIR}
 	install -m 744 ${B}/arch/riscv/boot/dts/${KERNEL_DEVICETREE} ${DEPLOYDIR}/default.dtb
 }
-
-COMPATIBLE_MACHINE:milkv-duo = "milkv-duo"
