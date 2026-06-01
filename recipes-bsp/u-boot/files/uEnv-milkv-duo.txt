@@ -7,9 +7,6 @@ setbootargs=setenv bootargs ${root} console=${consoledev},${baudrate} ${optargs}
 fdt=default.dtb
 kernel=uImage.fit
 
-loadaddr=0x81400000
-fdtaddr=0x83000000
-
 loadfdt=fatload mmc 0 ${fdtaddr} ${fdt}
 loaduimage=fatload mmc 0 ${loadaddr} ${kernel}
 
