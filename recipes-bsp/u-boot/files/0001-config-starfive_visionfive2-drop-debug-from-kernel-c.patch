@@ -1,0 +1,27 @@
+From 6bbbed3f0ab955cd7fe24f1020a7bada3e2ad9fc Mon Sep 17 00:00:00 2001
+From: Max Krummenacher <max.oss.09@gmail.com>
+Date: Thu, 2 Jul 2026 15:29:53 +0000
+Subject: [PATCH] config: starfive_visionfive2: drop debug from kernel cmdline
+
+Upstream-Status: Pending
+Signed-off-by: Max Krummenacher <max.oss.09@gmail.com>
+---
+ configs/starfive_visionfive2_defconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configs/starfive_visionfive2_defconfig b/configs/starfive_visionfive2_defconfig
+index a754134a3135..1c18803c928f 100644
+--- a/configs/starfive_visionfive2_defconfig
++++ b/configs/starfive_visionfive2_defconfig
+@@ -38,7 +38,7 @@ CONFIG_QSPI_BOOT=y
+ CONFIG_SD_BOOT=y
+ CONFIG_OF_BOARD_SETUP=y
+ CONFIG_USE_BOOTARGS=y
+-CONFIG_BOOTARGS="console=ttyS0,115200 debug rootwait earlycon=sbi"
++CONFIG_BOOTARGS="console=ttyS0,115200 rootwait earlycon=sbi"
+ CONFIG_USE_PREBOOT=y
+ CONFIG_PREBOOT="nvme scan; usb start; setenv fdt_addr ${fdtcontroladdr}; fdt addr ${fdtcontroladdr};"
+ CONFIG_SYS_CBSIZE=256
+-- 
+2.54.0
+

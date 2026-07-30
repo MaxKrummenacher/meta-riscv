@@ -48,6 +48,10 @@ SRC_URI:append:milkv-duo:upstream-uboot = " \
             file://uEnv-milkv-duo.txt \
 "
 
+SRC_URI:append:visionfive2 = " \
+            file://0001-config-starfive_visionfive2-drop-debug-from-kernel-c.patch \
+"
+
 ###############################
 # configure task customizations
 ###############################
